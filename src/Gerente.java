@@ -1,9 +1,6 @@
 
 public class Gerente extends Funcionario{
 
-	private String nome;
-	private String cpf;
-	private double salario;
 	private int senha;
 	
 	public void setSenha(int senha) {
@@ -13,34 +10,21 @@ public class Gerente extends Funcionario{
 	public boolean autentica(int senha) {
 		if(this.senha == senha) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
+	}
+
+	public boolean autentica(String login, int senha) {	// sobrecarga do método autentica, mas com dois parâmetros
+		if (login == super.getNome() && senha == this.senha) {
+			return true;
+		}
+		return false;
 	}
 	
 	public double getBonificacao() {
-		return this.salario;
+		// return this.salario;	// this implica visualmente que o atributo está declarado nesta classe
+		return super.getBonificacao() + super.getSalario();	// neste caso usamos super, pois o atributo está declarado na classe pai
 	}
-	
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	public double getSalario() {
-		return salario;
-	}
-	public void setSalario(double salario) {
-		this.salario = salario;
-	}
-	
 	
 	
 }
